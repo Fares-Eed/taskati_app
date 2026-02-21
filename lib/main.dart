@@ -1,0 +1,49 @@
+import 'dart:io';
+
+import 'package:flutter/material.dart';
+import 'package:taskati_app/Features/splash/splash_screen.dart';
+import 'package:taskati_app/core/constants/app_assets.dart';
+import 'package:taskati_app/core/styles/app_colors.dart';
+import 'package:taskati_app/core/styles/themes.dart';
+
+void main() {
+  runApp(const MainApp());
+}
+
+class MainApp extends StatelessWidget {
+  const MainApp({super.key});
+
+  @override
+  Widget build(BuildContext context) {
+    return  MaterialApp(
+      home: SplashScreen(),
+      debugShowCheckedModeBanner: false,
+      theme: AppThemes.lightTheme,
+      builder: (context, child) {
+        return SafeArea(
+          top: false,
+          bottom: Platform.isAndroid,
+          child: Scaffold(
+            body: Stack(
+              children: [
+                Container(
+                  height: double.infinity,
+                  width: double.infinity,
+                  color: AppColors.backgroundColor,
+                ),
+                Image.asset(
+                  AppAssets.bg,
+                  height: double.infinity,
+                  width: double.infinity,
+                  fit: BoxFit.cover,
+                ),
+                child!,
+              ],
+            ),
+          ),
+        );
+      },
+    );
+  }
+}
+
