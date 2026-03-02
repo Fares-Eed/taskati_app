@@ -1,12 +1,17 @@
 import 'dart:io';
 
+
 import 'package:flutter/material.dart';
 import 'package:taskati_app/Features/splash/splash_screen.dart';
 import 'package:taskati_app/core/constants/app_assets.dart';
+import 'package:taskati_app/core/services/shared_pref.dart';
 import 'package:taskati_app/core/styles/app_colors.dart';
 import 'package:taskati_app/core/styles/themes.dart';
 
-void main() {
+ Future<void> main()async {
+    WidgetsFlutterBinding.ensureInitialized();//to do a service befor the run app
+
+  await SharedPref.init();//cach
   runApp(const MainApp());
 }
 

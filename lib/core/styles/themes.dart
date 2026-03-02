@@ -4,7 +4,6 @@ import 'package:taskati_app/core/constants/app_fonts.dart';
 import 'package:taskati_app/core/styles/app_colors.dart';
 import 'package:taskati_app/core/styles/text_styles.dart';
 
-
 abstract class AppThemes {
   static ThemeData get lightTheme => ThemeData(
     fontFamily: AppFonts.lexend,
@@ -29,11 +28,23 @@ abstract class AppThemes {
     inputDecorationTheme: InputDecorationTheme(
       fillColor: AppColors.backgroundColor,
       filled: true,
-      hintStyle: TextStyles.caption1_14.copyWith(color: AppColors.secondaryColor),
+      hintStyle: TextStyles.caption1_14.copyWith(
+        color: AppColors.secondaryColor,
+      ),
       border: OutlineInputBorder(
         borderRadius: BorderRadius.circular(15),
         borderSide: BorderSide.none,
       ),
+    ),
+    tabBarTheme: TabBarThemeData(
+      dividerColor: Colors.transparent,
+      indicatorSize: TabBarIndicatorSize.tab,
+      labelStyle: TextStyles.caption1_14.copyWith(
+        fontWeight: FontWeight.w600,
+        color: AppColors.backgroundColor,
+      ),
+      dividerHeight: 0,
+      labelPadding: const EdgeInsets.symmetric(horizontal: 5, vertical: 0),
     ),
   );
 }
