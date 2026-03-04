@@ -13,7 +13,7 @@ class HomeDatePicker extends StatefulWidget {
 }
 
 class _HomeDatePickerState extends State<HomeDatePicker> {
-   DatePickerController _controller= DatePickerController();
+   final DatePickerController _controller= DatePickerController();
   @override
   void initState() {
     

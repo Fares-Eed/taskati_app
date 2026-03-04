@@ -13,4 +13,5 @@ class TextStyles {
   static TextStyle caption1_14 = TextStyle(fontSize: 14, fontWeight: FontWeight.w400,);
 
   static TextStyle caption2_12 = TextStyle(fontSize: 12);
+  static TextStyle caption3_9 = TextStyle(fontSize: 9);
 }

@@ -8,21 +8,25 @@ class CustomSvgPicture extends StatelessWidget {
     this.color,
     this.width,
     this.height,
+    this.onTap
   });
   final String path;
   final Color? color;
   final double? width;
   final double? height;
+  final Function()? onTap;
 
   @override
   Widget build(BuildContext context) {
-    return SvgPicture.asset(
-      path,
-      width: width,
-      height: height,
-      colorFilter: color != null
-          ? ColorFilter.mode(color!, BlendMode.srcIn)
-          : null,
+    return GestureDetector(onTap: onTap,
+      child: SvgPicture.asset(
+        path,
+        width: width,
+        height: height,
+        colorFilter: color != null
+            ? ColorFilter.mode(color!, BlendMode.srcIn)
+            : null,
+      ),
     );
   }
 }

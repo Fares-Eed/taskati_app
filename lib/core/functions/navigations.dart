@@ -11,7 +11,7 @@ void pushTo(BuildContext context, Widget newScreen) {
     context,
   ).push(MaterialPageRoute(builder: (BuildContext context) => newScreen));
 }
-void pop(BuildContext context, Widget newScreen) {
+void pop(BuildContext context) {
   Navigator.of(
     context,
   ).pop();

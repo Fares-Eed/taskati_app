@@ -2,6 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:taskati_app/core/constants/app_assets.dart';
+import 'package:taskati_app/core/services/hive_helper.dart';
 import 'package:taskati_app/core/services/shared_pref.dart';
 import 'package:taskati_app/core/styles/text_styles.dart';
 
@@ -23,8 +24,8 @@ class _HomeHeaderState extends State<HomeHeader> {
   }
 
   Future<void> getUserData() async {
-    name = SharedPref.getString(SharedPref.nameKey);
-    image = SharedPref.getString(SharedPref.imageKey);
+    name = HiveHelper.getCachedData(HiveHelper.nameKey);
+    image = HiveHelper.getCachedData(HiveHelper.imageKey);
     setState(() {
       
     });

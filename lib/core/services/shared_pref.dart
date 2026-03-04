@@ -1,40 +1,40 @@
-import 'package:shared_preferences/shared_preferences.dart';
-//we will use one opject to all of the app
+// import 'package:shared_preferences/shared_preferences.dart';
+// //we will use one opject to all of the app
 
-class SharedPref {
-  static late final SharedPreferences prefs;
+// class SharedPref {
+//   static late final SharedPreferences prefs;
 
-  //get the opject
-  static Future<void> init() async {
-    prefs = await SharedPreferences.getInstance();
-  }
-  //we want to call the init method before use the helper methods
-  //so we will call it in main func. before the runApp Func.
+//   //get the opject
+//   static Future<void> init() async {
+//     prefs = await SharedPreferences.getInstance();
+//   }
+//   //we want to call the init method before use the helper methods
+//   //so we will call it in main func. before the runApp Func.
 
-  //----helper methods----
+//   //----helper methods----
 
-  static const String nameKey = 'name';
-  static const String imageKey = 'image';
-  static const String isUploadedKey = 'isUploaded';
-  static Future<void> setUserInfo(String name, String image) async {
-    await setString(nameKey, name);
-    await setString(imageKey, image);
-  }
+//   static const String nameKey = 'name';
+//   static const String imageKey = 'image';
+//   static const String isUploadedKey = 'isUploaded';
+//   static Future<void> setUserInfo(String name, String image) async {
+//     await setString(nameKey, name);
+//     await setString(imageKey, image);
+//   }
 
-  static Future<void> setString(String key, String value) async {
-    await prefs.setString(key, value);
-  }
+//   static Future<void> setString(String key, String value) async {
+//     await prefs.setString(key, value);
+//   }
 
-  static String getString(String key) {
-    return prefs.getString(key) ?? '';
-  }
+//   static String getString(String key) {
+//     return prefs.getString(key) ?? '';
+//   }
 
-//bool
-  static Future<void> setBool(String key, bool value) async {
-    await prefs.setBool(key, value);
-  }
+// //bool
+//   static Future<void> setBool(String key, bool value) async {
+//     await prefs.setBool(key, value);
+//   }
 
-  static bool getBool(String key) {
-    return prefs.getBool(key) ?? false;
-  }
-}
+//   static bool getBool(String key) {
+//     return prefs.getBool(key) ?? false;
+//   }
+// }

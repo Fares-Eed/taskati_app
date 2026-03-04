@@ -8,6 +8,7 @@ import 'package:taskati_app/Features/home/page/home_screen.dart';
 import 'package:taskati_app/core/constants/app_assets.dart';
 import 'package:taskati_app/core/functions/dialogs.dart';
 import 'package:taskati_app/core/functions/navigations.dart';
+import 'package:taskati_app/core/services/hive_helper.dart';
 import 'package:taskati_app/core/services/shared_pref.dart';
 import 'package:taskati_app/core/styles/app_colors.dart';
 import 'package:taskati_app/core/styles/text_styles.dart';
@@ -141,11 +142,11 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 text: 'Let`s Start !',
                 onPressed: () async {
                   if (path != null && nameController.text.isNotEmpty) {
-                   await SharedPref.setUserInfo(nameController.text,path!);
-                   await SharedPref.setBool(SharedPref.isUploadedKey, true);
+                   await HiveHelper.setUserInfo(nameController.text,path!);
+                   await HiveHelper.cacheData(HiveHelper.isUploadedKey, true);
 
                     pushReplacment(context, HomeScreen());
-                    // navigate to home screen
+                    
                   } else if (path != null && nameController.text.isEmpty) {
                     showErrorDialog(context, 'Please enter your name');
                   } else if (path == null && nameController.text.isNotEmpty) {
