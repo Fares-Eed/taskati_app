@@ -34,7 +34,7 @@ class _HomeScreenState extends State<HomeScreen> {
               HomeDatePicker(),
               Gap(34),
            _statusTabs(),
-              Gap(31),
+              Gap(25),
               _tasksList()
             ],
           ),
@@ -54,9 +54,10 @@ class _HomeScreenState extends State<HomeScreen> {
       child: TabBarView(
             physics: const NeverScrollableScrollPhysics(),
             children: [
-              ListView(children: [TaskCard(),TaskCard(),TaskCard(),TaskCard(),],),
-              ListView(children: [TaskCard(),TaskCard(),TaskCard(),TaskCard(),],),
-              ListView(children: [TaskCard(),TaskCard(),TaskCard(),TaskCard(),],),
+              ListView(children: [TaskCard(),Gap(18),TaskCard(),Gap(18),TaskCard(),Gap(18),TaskCard(),],),
+              ListView(children: [TaskCard(),Gap(18),TaskCard(),Gap(18),TaskCard(),Gap(18),TaskCard(),],),
+              ListView(children: [TaskCard(),Gap(18),TaskCard(),Gap(18),TaskCard(),Gap(18),TaskCard(),],),
+
             
             ],
           ),
