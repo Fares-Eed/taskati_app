@@ -10,6 +10,7 @@ class AppAssets {
    static const String bg = 'assets/images/bg.png';
 
    static const String logo = 'assets/lottie/logo.json';
+   static const String emptyState = 'assets/lottie/empty_state.json';
 
 
 }

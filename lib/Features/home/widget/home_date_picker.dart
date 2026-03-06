@@ -5,8 +5,9 @@ import 'package:taskati_app/core/styles/text_styles.dart';
 
 class HomeDatePicker extends StatefulWidget {
   const HomeDatePicker({
-    super.key,
+    super.key,this.onDateChange
   });
+  final Function(DateTime)? onDateChange;
 
   @override
   State<HomeDatePicker> createState() => _HomeDatePickerState();
@@ -35,6 +36,7 @@ class _HomeDatePickerState extends State<HomeDatePicker> {
       monthTextStyle: TextStyles.caption2_12,
       dayTextStyle: TextStyles.caption2_12,
       calendarType: CalendarType.gregorianDate,
+      onDateChange: widget.onDateChange,
      
     );
   }

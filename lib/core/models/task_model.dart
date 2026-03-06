@@ -5,7 +5,7 @@ class TaskModel {
   String? date;
   String? startTime;
   String? endTime;
-  bool? isCompleted;
+  bool isCompleted;
   String? createdAt;
 
   TaskModel({
@@ -15,7 +15,27 @@ class TaskModel {
     this.date,
     this.startTime,
     this.endTime,
-    this.isCompleted,
+    this.isCompleted = false,
     this.createdAt,
   });
+
+    TaskModel copyWith({
+    String? id,
+    String? title,
+    String? description,
+    String? date,
+    String? startTime,
+    String? endTime,
+    bool? isCompleted,
+    String? createdAt,
+  }) => TaskModel(
+    id: id ?? this.id,
+    title: title ?? this.title,
+    description: description ?? this.description,
+    date: date ?? this.date,
+    startTime: startTime ?? this.startTime,
+    endTime: endTime ?? this.endTime,
+    isCompleted: isCompleted ?? this.isCompleted,
+    createdAt: createdAt ?? this.createdAt,
+  );
 }

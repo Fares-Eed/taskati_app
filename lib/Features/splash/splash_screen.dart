@@ -6,7 +6,6 @@ import 'package:taskati_app/Features/home/page/home_screen.dart';
 import 'package:taskati_app/core/constants/app_assets.dart';
 import 'package:taskati_app/core/functions/navigations.dart';
 import 'package:taskati_app/core/services/hive_helper.dart';
-import 'package:taskati_app/core/services/shared_pref.dart';
 import 'package:taskati_app/core/styles/app_colors.dart';
 import 'package:taskati_app/core/styles/text_styles.dart';
 
@@ -20,13 +19,18 @@ class SplashScreen extends StatefulWidget {
 class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
-    bool isUploaded =HiveHelper.getCachedData(HiveHelper.isUploadedKey)==true;
+    // We must call this first to set up the screen correctly.
+    super.initState();
+    bool isUploaded =
+        HiveHelper.getCachedData(HiveHelper.isUploadedKey) == true;
     Future.delayed(const Duration(seconds: 3), () {
-      if(isUploaded)
-      {pushReplacment(context, HomeScreen());}
-      else 
-      {pushReplacment(context, CompleteProfileScreen());}
-
+      // Check if the screen is still open before moving to another screen to avoid crashes.
+      if (!mounted) return;
+      if (isUploaded) {
+        pushReplacment(context, HomeScreen());
+      } else {
+        pushReplacment(context, CompleteProfileScreen());
+      }
     });
   }
 

@@ -15,28 +15,29 @@ import 'package:taskati_app/core/widgets/custom_svg_picture.dart';
 import 'package:taskati_app/core/widgets/custom_text_field.dart';
 import 'package:taskati_app/core/widgets/main_button.dart';
 
-//to pick an Image from gallery or camera
-// 1) use ImagePicker to pick image from camera or gallery
-// 2) extract path from XFile that is returned
-// 3) use path to display image using FileImage(File(path))
-
-// XFile(path) ==> ImagePicker
-// File(path) ==> dart:io
-
-class CompleteProfileScreen extends StatefulWidget {
-  const CompleteProfileScreen({super.key});
+class EditProfileScreen extends StatefulWidget {
+  const EditProfileScreen({super.key});
 
   @override
-  State<CompleteProfileScreen> createState() => _CompleteProfileScreenState();
+  State<EditProfileScreen> createState() => _EditProfileScreenState();
 }
 
-class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
+class _EditProfileScreenState extends State<EditProfileScreen> {
   String? path;
   final nameController = TextEditingController();
+
+  @override
+  void initState() {
+    super.initState();
+
+    nameController.text = HiveHelper.getCachedData(HiveHelper.nameKey) ?? '';
+    path = HiveHelper.getCachedData(HiveHelper.imageKey);
+  }
+
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      appBar: AppBar(title: Center(child: Text('Complete You Profile'))),
+      appBar: AppBar(title: Center(child: Text('Profile'))), 
       body: Padding(
         padding: const EdgeInsets.symmetric(horizontal: 22),
         child: SingleChildScrollView(
@@ -59,10 +60,9 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   CircleAvatar(
                     radius: 82,
                     backgroundColor: AppColors.backgroundColor,
-
                     backgroundImage: path != null
                         ? FileImage(File(path!))
-                        : AssetImage(AppAssets.user),
+                        : AssetImage(AppAssets.user) as ImageProvider,
                   ),
                   if (path != null)
                     Positioned(
@@ -94,7 +94,6 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                   TapButton(
                     text: 'From Camera',
                     onTap: () async {
-                      //bec it is a Future func
                       var image = await ImagePicker().pickImage(
                         source: ImageSource.camera,
                       );
@@ -119,11 +118,10 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                         },
                       );
                     },
-                  ), //another way (.then)
+                  ),
                 ],
               ),
               Gap(54),
-
               Row(
                 children: [
                   Text(
@@ -135,27 +133,27 @@ class _CompleteProfileScreenState extends State<CompleteProfileScreen> {
                 ],
               ),
               Gap(8),
-              CustomTextField(hint: 'Fares Eed', controller: nameController),
+              CustomTextField(
+                hint: 'Enter your name',
+                controller: nameController,
+              ),
               Gap(165),
               MainButton(
-                text: 'Let`s Start !',
+                text: 'Save',
                 onPressed: () async {
-                  if (path != null && nameController.text.isNotEmpty) {
-                    await HiveHelper.setUserInfo(nameController.text, path!);
-                    await HiveHelper.cacheData(HiveHelper.isUploadedKey, true);
-                    // Check if this specific context (screen) is still open after waiting.
-                    //hint: we are in build method so we used context.mounted
-                    if (!context.mounted) return;
-                    pushReplacment(context, HomeScreen());
-                  } else if (path != null && nameController.text.isEmpty) {
-                    showErrorDialog(context, 'Please enter your name');
-                  } else if (path == null && nameController.text.isNotEmpty) {
-                    showErrorDialog(context, 'Please upload your image');
-                  } else {
-                    showErrorDialog(
-                      context,
-                      'Please upload your image and name',
+                  if (path != null && nameController.text.trim().isNotEmpty) {
+                
+                    await HiveHelper.setUserInfo(
+                      nameController.text.trim(),
+                      path!,
                     );
+
+                    if (!context.mounted) return;
+                    pop(context);
+                  } else if (nameController.text.trim().isEmpty) {
+                    showErrorDialog(context, 'Please enter your name');
+                  } else if (path == null) {
+                    showErrorDialog(context, 'Please upload a profile image');
                   }
                 },
               ),

@@ -11,10 +11,12 @@ class HiveHelper {
   static const String userBoxName = 'user';
   static const String tasksBoxName = 'tasks';
 
-  // keys
+  // user box keys
   static const String nameKey = 'name';
   static const String imageKey = 'image';
   static const String isUploadedKey = 'isUploaded';
+    static const String isDarkModeKey = 'isDarkMode';
+
 
   static Future<void> init() async {
     userBox = await Hive.openBox(userBoxName);
@@ -50,7 +52,16 @@ class HiveHelper {
   static void deleteTask(String key) {
     tasksBox.delete(key);
   }
+  //theam
+    static void cacheThemeMode(bool value) {
+    userBox.put(isDarkModeKey, value);
+  }
+
+  static bool getCachedThemeMode() {
+    return userBox.get(isDarkModeKey) ?? false;
+  }
 }
+
 
 
 

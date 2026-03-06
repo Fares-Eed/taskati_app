@@ -6,7 +6,7 @@ class CustomTextField extends StatelessWidget {
     super.key,
     this.controller,
     this.hint,
-    this.content,
+    this.label,
     this.prefixIcon,
     this.suffixIcon,
     this.validator,
@@ -20,7 +20,7 @@ class CustomTextField extends StatelessWidget {
   });
   final TextEditingController? controller;
   final String? hint;
-  final Widget? content;
+  final Widget? label;
   final Widget? prefixIcon;
   final Widget? suffixIcon;
   final String? Function(String?)? validator;
@@ -48,7 +48,7 @@ class CustomTextField extends StatelessWidget {
         prefixIcon: prefixIcon,
         suffixIcon: suffixIcon,
         hintText: hint,
-        label: content,
+        label: label,
         
       ),
       validator: validator,

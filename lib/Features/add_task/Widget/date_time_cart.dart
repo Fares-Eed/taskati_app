@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:gap/gap.dart';
 import 'package:taskati_app/core/constants/app_assets.dart';
+import 'package:taskati_app/core/functions/extensions.dart';
 import 'package:taskati_app/core/styles/app_colors.dart';
 import 'package:taskati_app/core/styles/text_styles.dart';
 import 'package:taskati_app/core/widgets/custom_svg_picture.dart';
@@ -21,7 +22,7 @@ class DateTimeCart extends StatelessWidget {
       child: Container(
        width: double.infinity,height: 63,
        decoration: BoxDecoration(
-         color: AppColors.backgroundColor,
+         color: context.cardColor,
          borderRadius: BorderRadius.circular(15),
          boxShadow: [BoxShadow(
            offset: Offset(0, 4),

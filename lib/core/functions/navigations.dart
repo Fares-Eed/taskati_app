@@ -6,10 +6,11 @@ void pushReplacment(BuildContext context, Widget newScreen) {
   ).pushReplacement(MaterialPageRoute(builder: (BuildContext context) => newScreen));
 }
 
-void pushTo(BuildContext context, Widget newScreen) {
-  Navigator.of(
+Future pushTo(BuildContext context, Widget screen) {
+  return Navigator.push(//I maked it future to be able to use .then with it 
     context,
-  ).push(MaterialPageRoute(builder: (BuildContext context) => newScreen));
+    MaterialPageRoute(builder: (context) => screen),
+  );
 }
 void pop(BuildContext context) {
   Navigator.of(
